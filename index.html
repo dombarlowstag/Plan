@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>DOM: The Final Mission</title>
 <meta name="description" content="One groom. One squad. One weekend. Barcelona. The interactive mission briefing for Dom's stag weekend.">
 <meta property="og:title" content="DOM: The Final Mission">
@@ -176,7 +178,7 @@ h2{margin:0 0 14px;font:800 clamp(32px,4.4vw,52px)/.92 var(--f-cond);letter-spac
 .ghost:hover{border-color:var(--paper)}
 
 /* intel panels (board, return) */
-.ov[data-ch="board"],.ov[data-ch="return"]{align-items:flex-end}
+.ov[data-ch="return"]{align-items:flex-end}
 .intel{width:min(440px,100%)}
 dl.kv{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:9px 18px;margin:4px 0 0}
 dl.kv dt{font:600 10.5px/1.9 var(--f-head);letter-spacing:.2em;text-transform:uppercase;color:var(--steel)}
@@ -185,7 +187,8 @@ dl.kv dd{margin:0;min-width:0;font:500 15px/1.45 var(--f-head);font-variant-nume
 .hi{color:var(--amber)}
 
 /* boarding pass */
-.ov[data-ch="pass"]{flex-direction:column;align-items:center;justify-content:center;gap:22px}
+.ov[data-ch="board"]{flex-direction:column;align-items:center;justify-content:flex-end;gap:14px}
+.bp-train{width:100%;max-width:800px}.bp-train .train{margin-top:0}
 .bp-wrap{perspective:1700px;width:min(800px,100%)}
 .bp{position:relative;display:flex;transform-style:preserve-3d;cursor:pointer;transition:transform .9s var(--ease);animation:float 8s ease-in-out infinite;outline:none}
 .bp:focus-visible{outline:2px solid var(--amber);outline-offset:6px;border-radius:20px}
@@ -222,10 +225,13 @@ dl.kv dd{margin:0;min-width:0;font:500 15px/1.45 var(--f-head);font-variant-nume
   .bp{flex-direction:column}
   .bp-main{border-radius:18px 18px 6px 6px}
   .bp-main::before{right:0;bottom:auto;width:auto;height:6px;border-radius:18px 18px 0 0}
+  .bp:not(.open) .bp-stub{display:none}
+  .bp:not(.open) .bp-main{border-radius:18px}
+  .ov[data-ch="board"] .bp-note{display:none}
   .bp-stub{flex-basis:auto;border-left:0;border-top:2px dashed rgba(12,13,16,.25);border-radius:6px 6px 18px 18px;transform-origin:top center;transform:rotateX(178deg)}
   .bp.open .bp-stub{transform:rotateX(0)}
   .bp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ov[data-ch="pass"]{justify-content:flex-start}
+  .ov[data-ch="board"]{justify-content:flex-start}
 }
 
 /* sequence captions */
@@ -336,7 +342,7 @@ body.m-open .hub-head{opacity:0;pointer-events:none}
 .ov{padding:var(--top) 10px var(--bot)}
 .panel{border-radius:22px;padding:18px 18px 16px}
 .intel{width:100%}
-.ov[data-ch="board"],.ov[data-ch="return"]{justify-content:center}
+.ov[data-ch="return"]{justify-content:center}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 0}
 .tile{min-width:0;padding:11px 12px;border-radius:14px;background:rgba(245,245,242,.06);border:1px solid var(--hair)}
 .tile b{display:block;font:600 9.5px/1.2 var(--f-head);letter-spacing:.2em;text-transform:uppercase;color:var(--steel)}
@@ -399,8 +405,8 @@ body.m-open .hub-head{opacity:0;pointer-events:none}
   .cta{padding:20px 22px;font-size:13px}
   h2{font-size:clamp(30px,9vw,44px)}
   .tagline{letter-spacing:.22em}
-  .ov[data-ch="squad"],.ov[data-ch="pass"]{align-items:stretch;justify-content:flex-start}
-  .ov[data-ch="squad"]>:first-child,.ov[data-ch="pass"]>.bp-wrap{margin-top:auto}
+  .ov[data-ch="squad"],.ov[data-ch="board"]{align-items:stretch;justify-content:flex-start}
+  .ov[data-ch="squad"]>:first-child,.ov[data-ch="board"]>.bp-wrap{margin-top:auto}
   .ov.scroll>.panel{margin-top:auto}
   .it summary .status{justify-self:start}
   .squad{background:var(--glass);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--hair);border-radius:22px;padding:18px 14px 14px}
@@ -425,7 +431,7 @@ body.m-open .hub-head{opacity:0;pointer-events:none}
 @media (min-width:900px){
   .ov{padding:var(--top) var(--gut) var(--bot)}
   .intel{width:min(440px,100%)}
-  .ov[data-ch="board"],.ov[data-ch="return"]{justify-content:flex-start}
+  .ov[data-ch="return"]{justify-content:flex-start}
   .intro{width:auto}
   .intro-actions{flex-direction:row;align-items:center;gap:14px 18px}
   .intro-actions .ghost{border-bottom:1px solid var(--hair-2);color:var(--paper)}
@@ -447,7 +453,7 @@ body.m-open .hub-head{opacity:0;pointer-events:none}
   .intro{max-width:60%}
   .intro-actions{flex-direction:row}
   .intel,.hud{width:min(420px,58%)}
-  .ov[data-ch="board"],.ov[data-ch="return"]{justify-content:flex-start}
+  .ov[data-ch="return"]{justify-content:flex-start}
   .mpanel{left:auto;right:10px;width:min(400px,55vw)}
   .sheet{left:auto;width:min(380px,60vw)}
 }
@@ -613,6 +619,44 @@ body.m-open .hub-head{opacity:0;pointer-events:none}
 @media (prefers-reduced-motion:reduce){.ticker div,.hero-glow,.hero-plane svg,.tl-node::after,.agent.groom::after{animation:none!important}}
 body.rm .ticker div,body.rm .hero-glow,body.rm .hero-plane svg,body.rm .tl-node::after,body.rm .agent.groom::after{animation:none!important}
 
+
+/* ---------- Add to phone ---------- */
+.install-chip{display:inline-flex;align-items:center;gap:9px;align-self:center;margin:14px auto 0;min-height:42px;padding:0 16px 0 12px;border-radius:999px;border:1px solid rgba(255,184,107,.45);background:rgba(255,184,107,.1);color:var(--amber);cursor:pointer;font:700 11.5px/1 var(--f-head);letter-spacing:.16em;text-transform:uppercase;animation:breatheChip 3.2s ease-in-out infinite}
+.intro .install-chip{display:flex}
+.install-chip svg,.install-card svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@keyframes breatheChip{50%{box-shadow:0 0 0 6px rgba(255,184,107,.08)}}
+.standalone [data-install]{display:none!important}
+@media (min-width:900px){.intro .install-chip{margin:16px 0 0}}
+.install-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;width:100%;margin:0 0 16px;padding:12px 14px;border-radius:16px;border:1px dashed rgba(245,245,242,.25);background:none;text-align:left;cursor:pointer}
+.install-card .ic{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--paper);color:var(--night)}
+.install-card b{display:block;font:800 18px/1.1 var(--f-cond);letter-spacing:.04em;text-transform:uppercase}
+.install-card small{font-size:12px;color:var(--mute)}
+.install-card i{font:400 24px/1 var(--f-head);font-style:normal;color:var(--mute)}
+.phone-demo{display:grid;place-items:center;margin:6px 0 16px}
+.pd-screen{position:relative;display:grid;grid-template-columns:repeat(4,30px);gap:10px;padding:26px 16px 30px;width:170px;border-radius:30px;border:3px solid #2c3139;background:linear-gradient(160deg,#1a2a44,#3a2438)}
+.pd-screen i{height:30px;border-radius:9px;background:rgba(245,245,242,.16)}
+.pd-app{display:grid;place-items:center;height:30px;border-radius:9px;background:#08090C;box-shadow:0 0 0 1.5px var(--coral);animation:appIn 3.2s cubic-bezier(.3,1.5,.4,1) infinite}
+.pd-app span{font:900 18px/1 var(--f-cond);color:var(--coral)}
+@keyframes appIn{0%,15%{transform:scale(0) rotate(-20deg);opacity:0}35%,85%{transform:none;opacity:1}100%{transform:none;opacity:1}}
+.in-lead{margin:0 0 12px;font-size:15px}
+.in-note{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:rgba(255,184,107,.08);border:1px dashed rgba(255,184,107,.4);font-size:13px}
+.in-steps{margin:0;padding:0;list-style:none;display:grid;gap:8px;counter-reset:st}
+.in-steps li{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;background:rgba(245,245,242,.05);font-size:14px;animation:fadeUp .5s var(--ease) both;animation-delay:calc(var(--i) * 120ms + 150ms)}
+.in-ic{display:grid;place-items:center;flex:0 0 40px;height:40px;border-radius:12px;background:var(--paper);color:#0A7AFF}
+.in-ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.in-ok{font:700 14px/1 var(--f-body)}
+.in-go{width:100%}
+
+/* ---------- Map zoom controls ---------- */
+.mapctl{position:absolute;right:12px;top:calc(var(--top) + 96px);display:flex;flex-direction:column;border-radius:16px;overflow:hidden;border:1px solid var(--hair);background:rgba(8,9,12,.62);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:opacity .4s}
+.mapctl button{width:46px;height:46px;border:0;background:none;cursor:pointer;font:400 24px/1 var(--f-head);color:var(--paper);display:grid;place-items:center}
+.mapctl button+button{border-top:1px solid var(--hair)}
+.mapctl button:active{background:rgba(245,245,242,.12)}
+.mapctl button:disabled{opacity:.3}
+.mapctl svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+body.m-open .mapctl{opacity:0;pointer-events:none}
+html:not(.gl) .mapctl{display:none}
+
 /* ---------- Sheets, dossier, modal ---------- */
 .backdrop{position:fixed;inset:0;z-index:48;background:rgba(4,5,7,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .sheet{position:fixed;z-index:50;left:10px;right:10px;bottom:calc(var(--bot) - 6px);max-height:calc(100% - var(--top) - var(--bot));overflow-y:auto;background:var(--glass-2);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid var(--hair);border-radius:18px;padding:18px}
@@ -758,22 +802,13 @@ body.rm .bp,body.rm #grade::after{animation:none}
         <button class="cta" id="btnEnter" type="button"><span class="led" aria-hidden="true"></span>Enter the mission</button>
         <button class="ghost" id="btnSkipIntro" type="button">Skip to the itinerary</button>
       </div>
+      <button class="install-chip" type="button" data-install><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7M9 11l3 3 3-3M10 18h4"/></svg><span>Add to your phone</span></button>
       <p class="hint" id="soundHint">Sound is off. Tap the speaker for airport ambience.</p>
     </div>
   </section>
 
   <section class="ov scroll" data-ch="board" aria-labelledby="b-title">
-    <div class="panel intel">
-      <p class="eyebrow">Outbound flight · Thursday</p>
-      <h2 id="b-title">Outbound to Barcelona</h2>
-      <div id="intelOut"></div>
-      <p class="fine">TBC = not added yet. The other rows on the board are jokes.</p>
-      <div class="row-actions"><button class="btn primary" type="button" data-go="pass">Head to the gate ›</button></div>
-    </div>
-  </section>
-
-  <section class="ov scroll" data-ch="pass" aria-labelledby="p-title">
-    <h2 id="p-title" class="sr-only">Boarding pass souvenir</h2>
+    <h2 id="b-title" class="sr-only">Departures and souvenir boarding pass</h2>
     <div class="bp-wrap">
       <div class="bp" id="bp" tabindex="0" role="button" aria-expanded="false" aria-label="Souvenir boarding pass. Press to unfold.">
         <div class="bp-main">
@@ -797,21 +832,18 @@ body.rm .bp,body.rm #grade::after{animation:none}
     <div class="bp-actions">
       <button class="btn" id="bpToggle" type="button">Unfold pass</button>
       <button class="btn" id="bpSave" type="button">Save keepsake image</button>
-      <button class="btn primary" type="button" data-go="boarding">Board the aircraft ›</button>
+      <button class="btn primary" type="button" data-go="takeoff">Board now ›</button>
     </div>
+    <div id="bpTrain" class="bp-train"></div>
     <p class="bp-note">A decorative trip keepsake. Use your airline's boarding pass to fly.</p>
   </section>
 
-  <section class="ov" data-ch="boarding" aria-labelledby="bd-title">
-    <div class="caption">
-      <p class="eyebrow">Now boarding</p>
-      <p class="cap-big" id="bd-title">Gate <span id="bdGate">TBC</span> · Barcelona</p>
-    </div>
-    <button class="skip" type="button" data-skip>Skip ›</button>
-  </section>
-
   <section class="ov" data-ch="takeoff" aria-labelledby="to-title">
-    <div class="caption">
+    <div class="caption" id="capBoard">
+      <p class="eyebrow">Now boarding</p>
+      <p class="cap-big">Gate <span id="bdGate">TBC</span> · Barcelona</p>
+    </div>
+    <div class="caption" id="capTake" hidden>
       <p class="eyebrow" id="roRunway">Runway · London</p>
       <p class="cap-big" id="to-title">Cleared for takeoff</p>
       <div class="readouts"><div>Ground speed<b id="roSpeed">0 kt</b></div><div>Altitude<b id="roAlt">0 ft</b></div></div>
@@ -850,6 +882,7 @@ body.rm .bp,body.rm #grade::after{animation:none}
       <h2 id="m-title">The plan</h2>
       <p class="fine" id="hubNote"></p>
     </div>
+    <div class="mapctl" aria-label="Map zoom"><button type="button" id="mzIn" aria-label="Zoom in">+</button><button type="button" id="mzOut" aria-label="Zoom out">−</button><button type="button" id="mzReset" aria-label="Reset the map view"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></button></div>
     <div class="hub-foot"><div class="dayfilter" id="mapDays" role="tablist" aria-label="Filter by day"></div><div class="strip" id="strip" role="list" aria-label="Plan"></div></div>
   </section>
 
@@ -912,8 +945,15 @@ body.rm .bp,body.rm #grade::after{animation:none}
     <label><input type="radio" name="quality" value="lite" id="q-lite"><span>Lite 3D</span></label>
     <label><input type="radio" name="quality" value="2d" id="q-2d"><span>2D</span></label></div>
     <p class="set-note" id="qNote"></p></div>
+  <div class="set-group"><h3>App</h3><button class="btn" type="button" data-install style="width:100%">Add to your phone</button></div>
   <div class="set-group" id="adminGroup" hidden><h3>Admin</h3><button class="btn primary" id="btnAdmin" type="button" style="width:100%">Edit the plan</button><p class="set-note" id="adminNote"></p></div>
   <div class="set-group"><h3>Organisers</h3><label class="switch"><span>Show surprise details</span><input type="checkbox" id="setOrg"></label><p class="set-note">Shows surprise details on this device only. Keep it off when Dom is looking.</p></div>
+</div>
+
+<div class="sheet" id="sheetInstall" role="dialog" aria-modal="true" aria-labelledby="inTitle" hidden>
+  <div class="sheet-head"><h2 id="inTitle">Add to your phone</h2><button class="x" type="button" data-close aria-label="Close">×</button></div>
+  <div class="phone-demo" aria-hidden="true"><div class="pd-screen"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="pd-app"><span>D</span></b></div></div>
+  <div id="inBody"></div>
 </div>
 
 <div class="dossier" id="dossier" role="dialog" aria-modal="true" aria-labelledby="dosTitle" hidden>
@@ -1676,8 +1716,8 @@ const TP={
   hub:()=>portrait()?{p:[640,520,860],t:[40,0,-40]}:{p:[540,320,640],t:[20,0,-80]},
   ret:()=>portrait()?{p:[-180,170,560],t:[-500,30,960]}:{p:[-250,105,580],t:[-650,55,820]}
 };
-function boardPose(){const a=-.5,B=[16,5.6,-12],n=[Math.sin(a),0,Math.cos(a)],r=[Math.cos(a),0,-Math.sin(a)],P=portrait();const d=P?17:14.5,off=P?0:-2.4;
-  return{p:[B[0]+n[0]*d,B[1]+(P?-.6:-.9),B[2]+n[2]*d],t:[B[0]+r[0]*off,B[1]+(P?-2.4:-.2),B[2]+r[2]*off]}}
+function boardPose(){const a=-.5,B=[16,5.6,-12],n=[Math.sin(a),0,Math.cos(a)],r=[Math.cos(a),0,-Math.sin(a)],P=portrait();const d=P?27:14.5,off=0;
+  return{p:[B[0]+n[0]*d,B[1]+(P?-.6:-.9),B[2]+n[2]*d],t:[B[0]+r[0]*off,B[1]+(P?-6.5:-2.4),B[2]+r[2]*off]}}
 function vantage(m){const M=m._pos,P=portrait();let o;switch(m.type){case 'beach':o=[150,40,150];break;case 'nightlife':o=[190,95,230];break;case 'restaurant':o=[95,48,125];break;case 'hotel':o=[120,70,130];break;case 'arrival':case 'return':o=[280,150,170];break;default:o=[130,85,150]}
   if(P)o=[o[0]*1.35,o[1]*1.5,o[2]*1.35];const p=[M.x+o[0],o[1],M.z+o[2]],t=[M.x,P?-40:18,M.z];
   if(!P){const dx=t[0]-p[0],dz=t[2]-p[2],len=Math.hypot(dx,dz),rx=-dz/len,rz=dx/len,sh=Math.hypot(dx,o[1],dz)*.24;t[0]+=rx*sh;t[2]+=rz*sh}
@@ -1687,8 +1727,8 @@ function vantage(m){const M=m._pos,P=portrait();let o;switch(m.type){case 'beach
    Chapters
    ===================================================================== */
 const CH=[
-  {id:'terminal',label:'Terminal',w:'T'},{id:'board',label:'Departures',w:'T'},{id:'pass',label:'Boarding pass',w:'T'},{id:'boarding',label:'Boarding',w:'T',seq:true},
-  {id:'takeoff',label:'Takeoff',w:'F',seq:true},{id:'flight',label:'The flight',w:'F'},{id:'arrival',label:'Barcelona',w:'B',seq:true},
+  {id:'terminal',label:'Terminal',w:'T'},{id:'board',label:'Departures',w:'T'},
+  {id:'takeoff',label:'Takeoff',w:'T',seq:true},{id:'arrival',label:'Barcelona',w:'B',seq:true},
   {id:'missions',label:'The plan',w:'B'},{id:'squad',label:'The squad',w:'B'},{id:'return',label:'Flight home',w:'B'},{id:'finale',label:'Finale',w:'B'}];
 const idx=id=>CH.findIndex(c=>c.id===id);
 let cur=-1,seq=null,pendingMission=null,activeMission=null;
@@ -1702,7 +1742,7 @@ function ensure(k){if(!worlds[k]){const b={T:buildTerminal,F:buildFlight,B:build
 function goTo(i,opts={}){i=clamp(i,0,CH.length-1);if(i===cur&&!opts.force)return;
   const prev=cur>=0?CH[cur]:null,ch=CH[i];const interrupted=prev&&prev.seq&&!opts.auto&&seqActive();
   killSeq();cur=i;closeMission(true);
-  document.body.classList.toggle('cabin',GL&&(ch.id==='takeoff'||ch.id==='flight'));
+  document.body.classList.remove('cabin');
   $$('.ov').forEach(o=>o.classList.toggle('on',o.dataset.ch===ch.id));
   updateRail();syncTabs();buzz(6);$('#sr').textContent=`Chapter ${i+1} of ${CH.length}: ${ch.label}`;
   setLabels(false);Audio.score(0);
@@ -1710,7 +1750,7 @@ function goTo(i,opts={}){i=clamp(i,0,CH.length-1);if(i===cur&&!opts.force)return
   if(!GL){$('#still').classList.toggle('night',['squad','finale'].includes(ch.id))}
   const run=cut=>{try{ENTER[ch.id](cut)}catch(e){console.error(e)}};
   const worldChange=activeKey!==ch.w;
-  if(worldChange||interrupted||opts.cutVeil){let type='dip';if(prev&&prev.w==='T'&&ch.w==='F')type='door';else if(ch.w==='B'&&(!prev||prev.w==='F'))type='cloud';else if(ch.w==='F'&&!worldChange)type='cloud';
+  if(worldChange||interrupted||opts.cutVeil){let type='dip';if(activeKey==='F'&&ch.w==='B')type='cloud';
     veil(type,()=>{setWorld(ch.w);run(true)})}
   else run(!!opts.cut)}
 function step(d){const n=cur+d;if(n<0||n>=CH.length)return;Audio.blip(d>0?1200:900);goTo(n)}
@@ -1720,7 +1760,7 @@ function veil(type,mid){const v=$('#veil');v.className=type;gsap.killTweensOf(v)
 
 const ENTER={
   terminal(cut){if(GL){worlds.T.st.door=0;flyTo(TP.terminal(),cut?0:2.4)}},
-  board(cut){if(GL){flyTo(boardPose(),cut?0:2.3);worlds.T.board.play()}},
+  board(cut){setPass(false);if(GL){flyTo(boardPose(),cut?0:2.3);worlds.T.board.play()}},
   pass(cut){setPass(false);if(GL)flyTo(TP.pass(),cut?0:2.3)},
   boarding(cut){const tl=gsap.timeline();seq=tl;
     if(!GL||reduced()){tl.to({},{duration:GL?1.1:2.4}).call(()=>goTo(idx('takeoff'),{auto:true}));return}
@@ -1729,11 +1769,18 @@ const ENTER={
     tl.to(cam.p,{x:-20,y:1.72,z:-24,duration:2.2,ease:'power2.inOut'},0).to(cam.t,{x:-20,y:1.62,z:-62,duration:2.2,ease:'power2.inOut'},0)
       .to(cam.p,{z:-52,duration:4,ease:'none'}).to(T.st,{door:1,duration:1.4,ease:'power2.inOut'},'-=2.2')
       .to(cam.p,{z:-58.6,duration:1.5,ease:'power1.in'}).call(()=>goTo(idx('takeoff'),{auto:true}),null,'-=.55')},
-  takeoff(cut){resetCues();
-    if(!GL){seq=gsap.timeline().to({},{duration:3.2}).call(()=>goTo(idx('flight'),{auto:true}));return}
-    const F=worlds.F;if(reduced()){F.st.phase='cruise';F.st.y=520;F.st.z=-3800;F.st.pitch=0;seq=gsap.delayedCall(1.8,()=>goTo(idx('flight'),{auto:true}));return}
-    F.st.phase='takeoff';F.st.t=0;Audio.takeoff(0);
-    seq=gsap.to(F.st,{t:1,duration:12.5,ease:'none',onUpdate:()=>{Audio.takeoff(Math.min(1,F.st.t*1.6));takeoffHud(F.st)},onComplete:()=>goTo(idx('flight'),{auto:true})})},
+  takeoff(cut){resetCues();const cb=$('#capBoard'),ct=$('#capTake');cb.hidden=false;ct.hidden=true;
+    const toArrival=()=>goTo(idx('arrival'),{auto:true});
+    if(!GL||reduced()){const tl=gsap.timeline();seq=tl;tl.to({},{duration:GL?.9:1.4}).call(()=>{cb.hidden=true;ct.hidden=false;if(!GL)setWorld('F')}).to({},{duration:GL?.9:1.6}).call(toArrival);return}
+    const T=worlds.T;T.st.door=0;gsap.killTweensOf(cam.p);gsap.killTweensOf(cam.t);
+    if(cut){cam.p.set(-19.5,1.72,-17);cam.t.set(-20,1.6,-40)}
+    const tl=gsap.timeline();seq=tl;
+    tl.to(cam.p,{x:-20,y:1.72,z:-27,duration:1.3,ease:'power2.inOut'},0).to(cam.t,{x:-20,y:1.62,z:-62,duration:1.3,ease:'power2.inOut'},0)
+      .to(cam.p,{z:-52,duration:1.9,ease:'none'}).to(T.st,{door:1,duration:.9,ease:'power2.inOut'},'-=1.2')
+      .to(cam.p,{z:-57.8,duration:.7,ease:'power1.in'})
+      .call(()=>veil('door',()=>{if(CH[cur].id!=='takeoff')return;setWorld('F');document.body.classList.add('cabin');cb.hidden=true;ct.hidden=false;
+        const F=worlds.F;F.st.phase='takeoff';F.st.t=0;Audio.takeoff(0);
+        seq=gsap.to(F.st,{t:1,duration:8,ease:'none',onUpdate:()=>{Audio.takeoff(Math.min(1,F.st.t*1.6));takeoffHud(F.st)},onComplete:toArrival})}),null,'-=.35')},
   flight(cut){flightStart=performance.now();if(GL){const F=worlds.F;if(cut||F.st.phase!=='cruise'&&F.st.t<.98){F.st.y=Math.max(F.st.y,cut?520:F.st.y);if(cut){F.st.z=-3800;F.st.pitch=0}}F.st.phase='cruise';Audio.cruise()}},
   arrival(cut){const a=$('#arrive');a.classList.remove('show');
     if(!GL){seq=gsap.delayedCall(1.2,()=>a.classList.add('show'));return}
@@ -1743,9 +1790,9 @@ const ENTER={
     const cp=new THREE.CatmullRomCurve3(P,false,'centripetal'),ct=new THREE.CatmullRomCurve3(Tg,false,'centripetal');
     if(reduced()){cam.p.copy(P[P.length-1]);cam.t.copy(Tg[Tg.length-1]);seq=gsap.delayedCall(.4,()=>a.classList.add('show'));return}
     const pr={u:0};let shown=false;cam.p.copy(P[0]);cam.t.copy(Tg[0]);
-    seq=gsap.to(pr,{u:1,duration:16,ease:'power1.inOut',onUpdate:()=>{cp.getPoint(pr.u,cam.p);ct.getPoint(pr.u,cam.t);if(!shown&&pr.u>.44){shown=true;a.classList.add('show');Audio.score(.6)}}})},
+    seq=gsap.to(pr,{u:1,duration:10,ease:'power1.inOut',onUpdate:()=>{cp.getPoint(pr.u,cam.p);ct.getPoint(pr.u,cam.t);if(!shown&&pr.u>.38){shown=true;a.classList.add('show');Audio.score(.6)}}})},
   missions(cut){if(!GL){return openPending()}const B=worlds.B;B.markers.forEach(mk=>{mk.g.visible=true;mk.sel=false;mk.dim=false});applyMapFilter();B.setMood('dusk',cut?0:2.2);setLabels(true);
-    if(pendingMission){openPending(cut)}else flyTo(TP.hub(),cut?0:2.8)},
+    if(pendingMission){openPending(cut)}else flyTo(mapPose(),cut?0:2.8)},
   squad(cut){if(!GL)return;const B=worlds.B;B.setMood('night',cut?0:2.4);const P=portrait();B.orbit={c:[56,P?40:70,-112],r:P?420:340,h:P?220:150,speed:.045,a:Math.atan2(cam.p.z+112,cam.p.x-56)};if(cut){cam.p.set(56+340,150,-112);cam.t.set(56,70,-112)}},
   return(cut){if(!GL)return;const B=worlds.B;B.setMood('dusk',cut?0:2.2);B.planeMode='takeoff';flyTo(TP.ret(),cut?0:3)},
   finale(cut){const fin=$('#finale'),acts=$('#finaleActions'),mon=$('#montage');$$('p',fin).forEach(p=>p.classList.remove('show'));acts.classList.remove('show');mon.innerHTML='';
@@ -1780,11 +1827,11 @@ function projectLabels(){const B=worlds.B;if(!B||$('#labels').classList.contains
 let mapDay='all';
 function renderStrip(){const s=$('#strip');const days=TRIP.days.filter(d=>TRIP.missions.some(m=>m.day===d.id));
   $('#mapDays').innerHTML=[{id:'all',label:'All'},...days].map(d=>`<button type="button" role="tab" aria-selected="${mapDay===d.id}" data-day="${esc(d.id)}" style="--dc:${d.id==='all'?'#F5F5F2':dayColor(d.id)}">${esc(d.id==='all'?'All':shortDay(d))}</button>`).join('');
-  $$('#mapDays button').forEach(b=>b.onclick=()=>{mapDay=b.dataset.day;buzz();Audio.blip(1000);renderStrip();applyMapFilter();if(GL&&!activeMission)flyTo(TP.hub(),1.6)});
+  $$('#mapDays button').forEach(b=>b.onclick=()=>{mapDay=b.dataset.day;buzz();Audio.blip(1000);renderStrip();applyMapFilter();if(GL&&!activeMission)flyTo(mapPose(),1.6)});
   const list=TRIP.missions.filter(m=>mapDay==='all'||m.day===mapDay);
   s.innerHTML=list.map((m,i)=>`<button type="button" class="chip" role="listitem" data-m="${esc(m.id)}" style="--c:${isSecret(m)?'#8E98A7':statusOf(m).c};--dc:${dayColor(m.day)};--i:${i}"><span class="n">${svgI(isSecret(m)?{icon:'party'}:m)}</span><span class="t">${esc(mTitle(m))}</span><span class="s"><i class="dot"></i>${esc(dayOf(m)?shortDay(dayOf(m)):'')}${m.time?' · '+esc(m.time):''} · ${esc(statusOf(m).label)}</span></button>`).join('');
   $$('.chip',s).forEach(b=>b.addEventListener('click',()=>openMission(TRIP.missions.find(m=>m.id===b.dataset.m))));
-  const unset=TRIP.missions.some(m=>!m.address&&!m.mapUrl);$('#hubNote').textContent=(GL?'Tap a pin or a stop below. ':'Tap a stop below. ')+(unset?'Pins without an address are placed roughly.':'')}
+  const unset=TRIP.missions.some(m=>!m.address&&!m.mapUrl);$('#hubNote').textContent=(GL?(coarse?'Pinch to zoom, drag to move. ':'Scroll to zoom, drag to move. ')+'Tap a pin or a stop below. ':'Tap a stop below. ')+(unset?'Pins without an address are placed roughly.':'')}
 function applyMapFilter(){if(!worlds.B||CH[cur].id!=='missions')return;worlds.B.markers.forEach(mk=>{const on=mapDay==='all'||mk.m.day===mapDay;mk.g.visible=on;if(mk.el)mk.el.classList.toggle('filt',!on)})}
 const MOODFOR={arrival:'golden',hotel:'golden',restaurant:'dusk',beach:'day',nightlife:'night',activity:'day',return:'dusk'};
 function openMission(m,cut){if(!m)return;Audio.blip(1300);buzz(10);$('#mpanel').classList.remove('tall');
@@ -1793,7 +1840,7 @@ function openMission(m,cut){if(!m)return;Audio.blip(1300);buzz(10);$('#mpanel').
   if(GL){const B=worlds.B;B.markers.forEach(mk=>{mk.sel=mk.m===m;mk.dim=mk.m!==m});B.fx.forEach(f=>f.group.visible=f.id===m.id);B.setMood(MOODFOR[m.type]||'dusk',cut?0:2);
     B.planeMode=m.type==='arrival'?'land':m.type==='return'?'takeoff':null;flyTo(vantage(m),cut?0:2.6)}}
 function closeMission(silent){const p=$('#mpanel');if(!activeMission&&p.hidden)return;activeMission=null;document.body.classList.remove('m-open');p.classList.remove('in');setTimeout(()=>{if(!activeMission)p.hidden=true},500);
-  if(!silent&&GL&&CH[cur].id==='missions'){const B=worlds.B;B.markers.forEach(mk=>{mk.sel=false;mk.dim=false});B.fx.forEach(f=>f.group.visible=false);B.planeMode=null;B.setMood('dusk',1.8);flyTo(TP.hub(),2.4)}}
+  if(!silent&&GL&&CH[cur].id==='missions'){const B=worlds.B;B.markers.forEach(mk=>{mk.sel=false;mk.dim=false});B.fx.forEach(f=>f.group.visible=false);B.planeMode=null;B.setMood('dusk',1.8);flyTo(mapPose(),2.4)}}
 function fieldList(m){const sec=isSecret(m),F=[];const add=(k,v)=>{if(has(v))F.push([k,Array.isArray(v)?v.map(esc).join(', '):esc(v)])};
   add('When',missionWhen(m));add('Duration',m.duration);add('Meeting point',m.meetingPoint);
   if(!sec){add('Venue',m.venue);add('Address',m.address);add('Booking ref',m.bookingRef);if(m.costPerPerson!=null)add('Cost per person',money(m.costPerPerson));add('Organiser',m.organiser)}
@@ -1839,7 +1886,7 @@ function flightCard(o,isOut){const fl=[o.airline,o.flightNumber].filter(Boolean)
   <details class="more"><summary>All flight details</summary><dl class="kv">${kvRows(o,isOut)}</dl></details>`}
 function bindContent(){const g=TRIP.groom.name||'Dom';
   $$('[data-bind="groomUpper"]').forEach(e=>e.textContent=g.toUpperCase());$$('[data-bind="groomPoss"]').forEach(e=>e.textContent=g+'’s');$$('[data-bind="title"]').forEach(e=>e.textContent=TRIP.title);$$('[data-bind="tagline"]').forEach(e=>e.textContent=TRIP.tagline);
-  $('#intelOut').innerHTML=flightCard(TRIP.outbound,true);$('#intelIn').innerHTML=flightCard(TRIP.inbound,false);
+  const io=$('#intelOut');if(io)io.innerHTML=flightCard(TRIP.outbound,true);$('#bpTrain').innerHTML=transportStrip(true);$('#intelIn').innerHTML=flightCard(TRIP.inbound,false);
   $('#bdGate').textContent=TRIP.outbound.gate||'TBC';
   $('#ar-title').textContent=TRIP.copy.arrival[0];$('#arr2').textContent=TRIP.copy.arrival[1];
   $$('#finale p').forEach((p,i)=>p.textContent=TRIP.copy.finale[i]||'');
@@ -1884,8 +1931,8 @@ function onTab(t){buzz();Audio.blip(1100);
   else if(t==='map'){closeDialogs();if(CH[cur].id!=='missions')goTo(idx('missions'));else if(activeMission)closeMission()}
   syncTabs()}
 function openDialog(el){closeDialogs(true);lastFocus=document.activeElement;$('#backdrop').hidden=el.id==='dossier'||el.id==='modal';el.hidden=false;const f=el.querySelector('[aria-selected="true"],button,input,a');if(f)f.focus({preventScroll:true})}
-function closeDialogs(keepFocus){let any=false;['sheetCh','sheetSet','dossier','modal'].forEach(id=>{const e=$('#'+id);if(!e.hidden){e.hidden=true;any=true}});$('#backdrop').hidden=true;if(any&&!keepFocus&&lastFocus)lastFocus.focus({preventScroll:true});syncTabs()}
-const anyDialog=()=>['sheetCh','sheetSet','dossier','modal','editor'].some(id=>!$('#'+id).hidden);
+function closeDialogs(keepFocus){let any=false;['sheetCh','sheetSet','sheetInstall','dossier','modal'].forEach(id=>{const e=$('#'+id);if(!e.hidden){e.hidden=true;any=true}});$('#backdrop').hidden=true;if(any&&!keepFocus&&lastFocus)lastFocus.focus({preventScroll:true});syncTabs()}
+const anyDialog=()=>['sheetCh','sheetSet','sheetInstall','dossier','modal','editor'].some(id=>!$('#'+id).hidden);
 
 const TABS=[{id:'itinerary',label:'Plan'},{id:'flights',label:'Flights'},{id:'transport',label:'Train'},{id:'stay',label:'Stay'},{id:'costs',label:'Costs'},{id:'squad',label:'Squad'},{id:'links',label:'Links'},{id:'sos',label:'Emergency',sos:true}];
 function openDossier(tab='itinerary'){openDialog($('#dossier'));showTab(tab)}
@@ -1910,7 +1957,7 @@ function heroHTML(){const o=TRIP.outbound,dep=o.date&&o.departs?zonedToUtc(o.dat
   ${dep?`<div class="cd" id="cd" data-t="${dep.getTime()}">${['days','hrs','min','sec'].map(u=>`<div><b data-u="${u}">--</b><small>${u}</small></div>`).join('')}</div>`
      :`<div class="hero-next"><b>${esc(o.dayLabel||'')} ${esc(o.departs||'')}</b> ${esc(o.from.airport||o.from.city)} → ${esc(o.to.airport||o.to.city)}<small>${adminMode?'Add the trip dates in Edit plan to start a countdown.':''}</small></div>`}
   <div class="stats">${stats.map(([v,l])=>`<div><b data-count="${v}">${v}</b><small>${l}</small></div>`).join('')}</div>
-  <div class="ticker" aria-hidden="true"><div>${tick.repeat(4)}</div></div></div>`+nextCardHTML()}
+  <div class="ticker" aria-hidden="true"><div>${tick.repeat(4)}</div></div></div>`+nextCardHTML()+(isStandalone()?'':`<button type="button" class="install-card" data-install><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7M9 11l3 3 3-3M10 18h4"/></svg></span><span><b>Add to your phone</b><small>Opens full screen from your home screen</small></span><i aria-hidden="true">›</i></button>`)}
 function tickCountdown(){const el=$('#cd');if(!el)return;let d=Math.max(0,+el.dataset.t-Date.now())/1000;const v={days:Math.floor(d/86400),hrs:Math.floor(d%86400/3600),min:Math.floor(d%3600/60),sec:Math.floor(d%60)};
   $$('[data-u]',el).forEach(b=>{const t=String(v[b.dataset.u]).padStart(2,'0');if(b.textContent!==t){b.textContent=t;b.classList.remove('flip');void b.offsetWidth;b.classList.add('flip')}})}
 setInterval(tickCountdown,1000);
@@ -2007,15 +2054,15 @@ function loop(now){requestAnimationFrame(loop);const dt=Math.min(.05,(now-last)/
   if(Q.tier==='full'&&S.quality==='auto'&&time>6){fpsAcc+=dt;fpsN++;if(fpsAcc>4){const avg=fpsAcc/fpsN;fpsAcc=0;fpsN=0;if(avg>.042){fpsWatch++;if(fpsWatch>=2)downgrade()}else fpsWatch=0}}}
 function downgrade(){Q.tier='lite';renderer.setPixelRatio(1);if(worlds.F)worlds.F.clouds.forEach((c,i)=>c.visible=i%2===0);toast('Switched to Lite 3D so it stays smooth on this device.')}
 function onResize(){if(!GL)return;renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.fov=portrait()?62:48;camera.updateProjectionMatrix();
-  const id=CH[cur]&&CH[cur].id;if(seqActive())return;if(id==='terminal')flyTo(TP.terminal(),.8);else if(id==='board')flyTo(boardPose(),.8);else if(id==='missions')activeMission?flyTo(vantage(activeMission),.8):flyTo(TP.hub(),.8);else if(id==='return')flyTo(TP.ret(),.8)}
+  const id=CH[cur]&&CH[cur].id;if(seqActive())return;if(id==='terminal')flyTo(TP.terminal(),.8);else if(id==='board')flyTo(boardPose(),.8);else if(id==='missions')activeMission?flyTo(vantage(activeMission),.8):flyTo(mapPose(),.8);else if(id==='return')flyTo(TP.ret(),.8)}
 
 function bindInput(){
   addEventListener('pointermove',e=>{if(e.pointerType==='mouse'){ptr.tx=(e.clientX/innerWidth)*2-1;ptr.ty=(e.clientY/innerHeight)*2-1}},{passive:true});
   let acc=0,lock=0;
-  addEventListener('wheel',e=>{if(anyDialog()||e.target.closest('.scroll,.mpanel,.strip,.dossier,.sheet'))return;const n=performance.now();if(n<lock)return;acc+=e.deltaY;if(Math.abs(acc)>70){step(Math.sign(acc));acc=0;lock=n+1200}},{passive:true});
+  addEventListener('wheel',e=>{if(anyDialog()||(GL&&CH[cur]&&CH[cur].id==='missions')||e.target.closest('.scroll,.mpanel,.strip,.dossier,.sheet,.editor'))return;const n=performance.now();if(n<lock)return;acc+=e.deltaY;if(Math.abs(acc)>70){step(Math.sign(acc));acc=0;lock=n+1200}},{passive:true});
   // stories-style: swipe left for the next chapter, right to go back
   let ty=null,tx=null,t0=0;
-  addEventListener('touchstart',e=>{if(e.touches.length>1||anyDialog()||e.target.closest('.mpanel,.strip,input,textarea,.bp,#tabbar,#topbar,details,.roster')){tx=null;return}tx=e.touches[0].clientX;ty=e.touches[0].clientY;t0=performance.now()},{passive:true});
+  addEventListener('touchstart',e=>{if(e.touches.length>1||anyDialog()||(GL&&CH[cur]&&CH[cur].id==='missions')||e.target.closest('.mpanel,.strip,input,textarea,.bp,#tabbar,#topbar,details,.roster')){tx=null;return}tx=e.touches[0].clientX;ty=e.touches[0].clientY;t0=performance.now()},{passive:true});
   addEventListener('touchend',e=>{if(tx===null)return;const dx=tx-e.changedTouches[0].clientX,dy=ty-e.changedTouches[0].clientY;tx=null;
     if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5&&performance.now()-t0<800)step(dx>0?1:-1)},{passive:true});
   // mission sheet: drag the handle down to close, tap it to resize
@@ -2060,7 +2107,7 @@ function applyQuality(){const want=pickTier();if(want==='2d'&&GL){toStatic('Swit
   if(want!=='2d'&&!GL){toast('Reload the page to turn 3D back on.');return}
   Q.tier=want;renderer.setPixelRatio(Math.min(devicePixelRatio,want==='full'?1.75:1));if(worlds.F)worlds.F.clouds.forEach((c,i)=>c.visible=want==='full'||i%2===0);syncSettings()}
 
-function toStatic(msg){if(GL){GL=false;try{renderer.dispose();renderer.domElement.remove()}catch(e){}}document.body.classList.remove('cabin');$('#still').hidden=false;setLabels(false);
+function toStatic(msg){document.documentElement.classList.remove('gl');if(GL){GL=false;try{renderer.dispose();renderer.domElement.remove()}catch(e){}}document.body.classList.remove('cabin');$('#still').hidden=false;setLabels(false);
   setWorld(CH[Math.max(cur,0)].w);if(msg)toast(msg,4200);renderStrip();if(cur>=0)goTo(cur,{force:true,cut:true})}
 
 /* =====================================================================
@@ -2177,6 +2224,59 @@ function bindEditor(){const ed=$('#editor');
   $('#edCancel').onclick=()=>{const b=$('#edCancel');if(edDirty&&b.dataset.armed!=='1'){b.dataset.armed='1';b.textContent='Discard?';setTimeout(()=>{b.dataset.armed='';b.textContent='Cancel'},2500);return}b.dataset.armed='';b.textContent='Cancel';ed.hidden=true;edDirty=false};
   $('#edSave').onclick=saveEditor;$('#btnAdmin').onclick=openEditor;$('#btnEditTop').onclick=openEditor}
 
+
+/* =====================================================================
+   Add to phone
+   ===================================================================== */
+let BIP=null;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();BIP=e});
+addEventListener('appinstalled',()=>{BIP=null;toast('Added to your phone.');$$('[data-install]').forEach(b=>b.hidden=true)});
+const isStandalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const UA=navigator.userAgent||'';
+const isIOS=/iPhone|iPad|iPod/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const isAndroid=/Android/.test(UA);
+const SHARE_I='<svg viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+const PLUS_I='<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg>';
+const DOTS_I='<svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>';
+function openInstall(){buzz();const b=$('#inBody');let h='';
+  const stepsHTML=st=>`<ol class="in-steps">${st.map(([ic,t],i)=>`<li style="--i:${i}"><span class="in-ic">${ic}</span><span>${t}</span></li>`).join('')}</ol>`;
+  if(isStandalone())h='<p class="in-lead">It’s already on your home screen. You’re all set.</p>';
+  else if(BIP)h='<p class="in-lead">Install the plan like an app. It opens full screen from your home screen.</p><button class="btn primary in-go" type="button" id="inGo">Install</button>';
+  else if(isIOS)h=`<p class="in-lead">Put the plan on your home screen like an app.</p>${inFrame?'<p class="in-note">If you’re in the Claude app, open this link in <b>Safari</b> first.</p>':''}${stepsHTML([[SHARE_I,'Tap the <b>Share</b> button in Safari’s toolbar'],[PLUS_I,'Scroll down and tap <b>Add to Home Screen</b>'],['<b class="in-ok">Add</b>','Tap <b>Add</b> in the top corner']])}`;
+  else if(isAndroid)h=`<p class="in-lead">Put the plan on your home screen like an app.</p>${inFrame?'<p class="in-note">If you’re in the Claude app, open this link in <b>Chrome</b> first.</p>':''}${stepsHTML([[DOTS_I,'Tap the <b>⋮</b> menu in Chrome'],[PLUS_I,'Tap <b>Add to Home screen</b> or <b>Install app</b>'],['<b class="in-ok">Add</b>','Tap <b>Add</b> or <b>Install</b> to confirm']])}`;
+  else h=`<p class="in-lead">Open this link on your phone, then use this button again to add it to your home screen.</p>${stepsHTML([[SHARE_I,'<b>iPhone:</b> Safari → Share → Add to Home Screen'],[DOTS_I,'<b>Android:</b> Chrome → ⋮ → Add to Home screen']])}`;
+  b.innerHTML=h;openDialog($('#sheetInstall'));
+  const go=$('#inGo');if(go)go.onclick=async()=>{try{BIP.prompt();const r=await BIP.userChoice;BIP=null;if(r&&r.outcome==='accepted'){closeDialogs();toast('Added to your phone.')}}catch(e){toast('Use your browser menu to add it instead.')}}}
+document.addEventListener('click',e=>{if(e.target.closest('[data-install]'))openInstall()});
+if(isStandalone())document.documentElement.classList.add('standalone');
+if(!inFrame&&'serviceWorker' in navigator&&document.querySelector('link[rel="manifest"]')&&/^https?:/.test(location.protocol)){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
+
+
+/* =====================================================================
+   Map zoom and pan: pinch / drag / wheel / + − buttons
+   ===================================================================== */
+const MV={z:1,x:0,zz:0};
+function mapPose(){const b=TP.hub();const o=[b.p[0]-b.t[0],b.p[1]-b.t[1],b.p[2]-b.t[2]];const t=[b.t[0]+MV.x,b.t[1],b.t[2]+MV.zz];return{p:[t[0]+o[0]*MV.z,t[1]+o[1]*MV.z,t[2]+o[2]*MV.z],t}}
+function mapApply(dur){if(!GL)return;const P=mapPose();gsap.killTweensOf(cam.p);gsap.killTweensOf(cam.t);
+  if(!dur){cam.p.set(...P.p);cam.t.set(...P.t);return}
+  gsap.to(cam.p,{x:P.p[0],y:P.p[1],z:P.p[2],duration:dur,ease:'power2.out'});gsap.to(cam.t,{x:P.t[0],y:P.t[1],z:P.t[2],duration:dur,ease:'power2.out'})}
+const mapLive=()=>GL&&CH[cur]&&CH[cur].id==='missions'&&!activeMission&&!anyDialog()&&!seqActive();
+function mapZoom(f,dur=.45){MV.z=clamp(MV.z*f,.24,1.7);mapApply(dur);updMapCtl()}
+function mapPan(dx,dy){const f=_vA.subVectors(cam.t,cam.p);f.y=0;f.normalize();const k=Math.hypot(...mapPose().p.map((v,i)=>v-mapPose().t[i]))/innerHeight*1.4;
+  MV.x=clamp(MV.x-(-f.z)*dx*k+f.x*dy*k,-760,760);MV.zz=clamp(MV.zz-f.x*dx*k+f.z*dy*k,-820,960)}
+function updMapCtl(){const i=$('#mzIn'),o=$('#mzOut');if(i)i.disabled=MV.z<=.25;if(o)o.disabled=MV.z>=1.69}
+function bindMap(){$('#mzIn').onclick=()=>{buzz();mapZoom(.68)};$('#mzOut').onclick=()=>{buzz();mapZoom(1.47)};$('#mzReset').onclick=()=>{buzz();MV.z=1;MV.x=0;MV.zz=0;mapApply(.9);updMapCtl()};
+  if(!GL)return;const cv=renderer.domElement,pts=new Map();let pinch0=0,z0=1,moved=0;
+  cv.addEventListener('pointerdown',e=>{if(!mapLive())return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});try{cv.setPointerCapture(e.pointerId)}catch(_){}
+    gsap.killTweensOf(cam.p);gsap.killTweensOf(cam.t);moved=0;if(pts.size===2){const [a,b]=[...pts.values()];pinch0=Math.hypot(a.x-b.x,a.y-b.y);z0=MV.z}});
+  cv.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;const pr=pts.get(e.pointerId),nx=e.clientX,ny=e.clientY;
+    if(pts.size===1){const dx=nx-pr.x,dy=ny-pr.y;moved+=Math.abs(dx)+Math.abs(dy);mapPan(dx,dy);mapApply(0)}
+    pts.set(e.pointerId,{x:nx,y:ny});
+    if(pts.size===2&&pinch0){const [a,b]=[...pts.values()];const d=Math.hypot(a.x-b.x,a.y-b.y);MV.z=clamp(z0*pinch0/Math.max(d,1),.24,1.7);mapApply(0);updMapCtl()}});
+  const up=e=>{pts.delete(e.pointerId);if(pts.size<2)pinch0=0};
+  cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
+  cv.addEventListener('wheel',e=>{if(!mapLive())return;e.preventDefault();MV.z=clamp(MV.z*Math.exp(e.deltaY*.0016),.24,1.7);mapApply(.2);updMapCtl()},{passive:false})}
+
 function stepState(id,s){$('#'+id).className=s}
 async function boot(){
   homeIcon();nextUp();bindContent();buildRail();bindInput();bindEditor();updateSoundUI();applyMotionClass();syncTabs();initShared();
@@ -2188,6 +2288,7 @@ async function boot(){
       renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();toStatic('The 3D view stopped responding, so the 2D cinematic mode took over.')});
       camera=new THREE.PerspectiveCamera(portrait()?62:48,innerWidth/innerHeight,.1,9000);cam.p=new THREE.Vector3();cam.t=new THREE.Vector3();_vA=new THREE.Vector3();_vB=new THREE.Vector3();makeTextures();GL=true}
     catch(e){console.warn(e);GL=false}}
+  document.documentElement.classList.toggle('gl',GL);
   if(!GL){stepState('ls2','fail');$('#ldMsg').textContent=window.THREE?'3D isn’t available on this device, so the 2D cinematic mode is on.':'The 3D engine didn’t load, so the 2D cinematic mode is on.';$('#still').hidden=false}
   else stepState('ls2','ok');
   stepState('ls3','busy');
@@ -2196,6 +2297,7 @@ async function boot(){
   if(!GL)setWorld('T');
   renderStrip();
   stepState('ls3','ok');
+  bindMap();
   requestAnimationFrame(loop);
   setTimeout(()=>{$('#loader').classList.add('gone');cur=0;$$('.ov').forEach(o=>o.classList.toggle('on',o.dataset.ch==='terminal'));updateRail();Audio.world='T';
     if(GL)flyTo(TP.terminal(),reduced()?0:3.6,'power2.out');if(S.sound)$('#soundHint').textContent='Sound was on last time. Press the speaker button or Enter to resume it.';
